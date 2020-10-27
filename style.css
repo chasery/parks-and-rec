@@ -11,15 +11,18 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 @media all and (min-width: 64rem) {
   .form,
-  .results {
+  .results,
+  .error {
     width: 50rem;
   }
 }
 
 .form__fields {
   display: flex;
+  flex-direction: column;
   margin-top: 1rem;
   padding-left: 0;
 }
@@ -32,7 +35,7 @@ body {
 }
 
 .form__fields li + li {
-  margin-left: 1rem;
+  margin-top: 1rem;
 }
 
 .form__fields li button {
@@ -47,18 +50,52 @@ body {
 .park {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   padding: 0.75rem 0;
   border-bottom: 0.0625rem solid lightgrey;
+}
+
+.park__header {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 100%;
 }
 
 .park__name {
   flex-grow: 1;
 }
 
+.park__url {
+  justify-self: flex-end;
+  margin-bottom: 1rem;
+}
+
 @media all and (min-width: 64rem) {
+  .form__fields {
+    flex-direction: row;
+  }
+
+  .form__fields li + li {
+    margin: 0 0 0 1rem;
+  }
+
   .park {
     flex-direction: row;
   }
+
+  .park__header {
+    flex-direction: row;
+  }
+
+  .park__url {
+    justify-self: flex-end;
+    margin-top: 1.25rem;
+  }
+}
+
+.hidden {
+  display: none;
 }
 
 .error {
