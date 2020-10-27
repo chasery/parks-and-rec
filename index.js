@@ -7,22 +7,21 @@ function formatQueryParams(params) {
   // A function for taking in a params object and returning a query stirng
   const queryItems = Object.keys(params).map((key) => {
     if (key === "stateCode") {
-      let stateList = params[key].join(",");
-      return `stateCode=${stateList}`;
+      return `${encodeURIComponent(key)}=${params[key].join(",")}`;
     }
     return `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`;
   });
   return queryItems.join("&");
 }
 
-function getParks(state) {
+function getParks(states, maxResults) {
   // A function to GET a list of Parks from the National Parks Service
   let params = {
-    stateCode: state,
+    stateCode: states,
+    limit: maxResults,
     api_key: apiKey,
   };
   let queryString = formatQueryParams(params);
-  console.log(queryString);
   let url = parksEndpoint + "?" + queryString;
 
   fetch(url)
@@ -44,8 +43,9 @@ function watchForm() {
   // A function to watch for user input
   $("#jsGetParks").submit((e) => {
     e.preventDefault();
-    let state = $("#jsStateSelect").val();
-    getParks(state);
+    let states = $("#jsStateSelect").val();
+    let maxResults = $("#jsMaxResults").val();
+    getParks(states, maxResults);
   });
 }
 

@@ -23,7 +23,6 @@
         <li>
           <label for="states">State</label>
           <select id="jsStateSelect" name="states" multiple required>
-            <option value="">Select a state</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
@@ -76,6 +75,17 @@
             <option value="WI">Wisconsin</option>
             <option value="WY">Wyoming</option>
           </select>
+        </li>
+        <li>
+          <label for="results">Max Results</label>
+          <input
+            id="jsMaxResults"
+            type="number"
+            value="10"
+            min="1"
+            pattern="[0-9]"
+            required
+          />
         </li>
         <li>
           <button type="submit">Get Parks</button>
